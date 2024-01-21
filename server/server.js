@@ -1,20 +1,21 @@
 require('dotenv').config()
 
 const express = require('express')
+const messageRoutes = require('./routes/messages')
 
 // Express app
 const app = express()
 
-// TEMPORARY middleware
+// Middleware
+app.use(express.json())
+
 app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
 })
 
 // Routes
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to Echo Notes!'})
-})
+app.use('/api/messages', messageRoutes)
 
 // Listen for requests
 app.listen(process.env.PORT, () => {

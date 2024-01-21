@@ -1,4 +1,5 @@
 const express = require('express')
+const Message = require('../models/messageModel')
 
 const router = express.Router()
 
@@ -13,8 +14,20 @@ router.get('/:id', (req, res) => {
 })
 
 // Post a new message
-router.post('/', (req, res) => {
-  res.json({ message: 'POST a new message' })
+router.post('/', async (req, res) => {
+  const {profile, thread, content, reactions} = req.body
+
+  try {
+    const message = await Message.create({
+      profile,
+      thread,
+      content,
+      reactions
+    })
+    res.status(200).json(message)
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
 })
 
 // Delete a message

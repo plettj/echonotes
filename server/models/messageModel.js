@@ -11,7 +11,7 @@ const reactionSchema = new Schema({
 })
 
 const messageSchema = new Schema({
-  profile: {
+  user: {
     type: String,
     required: true
   },

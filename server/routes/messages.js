@@ -2,7 +2,9 @@ const express = require('express')
 const {
   getMessages,
   getMessage,
-  createMessage
+  createMessage,
+  deleteMessage,
+  editMessage
 } = require('../controllers/messageController')
 
 const router = express.Router()
@@ -17,13 +19,9 @@ router.get('/:id', getMessage)
 router.post('/', createMessage)
 
 // Delete a message
-router.delete('/:id', (req, res) => {
-  res.json({ message: 'DELETE a message' })
-})
+router.delete('/:id', deleteMessage)
 
 // Edit a message
-router.patch('/:id', (req, res) => {
-  res.json({ message: 'PATCH a message' })
-})
+router.patch('/:id', editMessage)
 
 module.exports = router;

@@ -16,7 +16,7 @@ const getMessage = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ message: 'Invalid message ID: ' + id })
+    return res.status(400).json({ message: 'Invalid message ID: ' + id })
   }
 
   try {
@@ -50,7 +50,53 @@ const createMessage = async (req, res) => {
 }
 
 // Delete a message
+const deleteMessage = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'Invalid message ID: ' + id })
+  }
+
+  try {
+    const message = await Message.findOneAndDelete({ _id: id })
+
+    if (!message) {
+      return res.status(404).json({ message: 'Could not find message for delete by ID: ' + id })
+    }
+
+    res.status(200).json(message)
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+}
 
 // Edit a message
+const editMessage = async (req, res) => {
+  const { id } = req.params
 
-module.exports = { getMessages, getMessage, createMessage }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'Invalid message ID: ' + id })
+  }
+
+  try {
+    const message = await Message.findOneAndUpdate({ _id: id }, {
+      ...req.body
+    })
+
+    if (!message) {
+      return res.status(404).json({ message: 'Could not find message for edit by ID: ' + id })
+    }
+    
+    res.status(200).json(message)
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+}
+
+module.exports = {
+  getMessages,
+  getMessage,
+  createMessage,
+  deleteMessage,
+  editMessage
+}

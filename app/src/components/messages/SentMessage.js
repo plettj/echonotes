@@ -22,6 +22,7 @@ const SentMessage = ({ message }) => {
       <Typography variant="h6">{message.thread}</Typography>
       <Typography variant="body1">{message.content}</Typography>
       <Typography variant="body1">{message.reactions}</Typography>
+      <p>{message.createdAt}</p>
     </MessageContainer>
   );
 };

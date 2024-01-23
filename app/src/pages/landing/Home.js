@@ -1,6 +1,7 @@
 import SendButton from '../../components/buttons/SendButton';
 import { useEffect, useState } from 'react';
 import SentMessage from '../../components/messages/SentMessage';
+import InputField from '../../components/messages/InputField';
 
 const Home = () => {
   const [messages, setMessages] = useState(null);
@@ -26,6 +27,7 @@ const Home = () => {
           <SentMessage message={message} key={message.id} />
         )) }
       </div>
+      <InputField user={"Developer"} thread="real-time" />
       <SendButton />
     </div>
   );

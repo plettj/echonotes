@@ -1,4 +1,4 @@
-import NavBar from '../../components/landing/NavBar';
+
 
 const Beta = () => {
   return (

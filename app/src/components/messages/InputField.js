@@ -38,7 +38,6 @@ const InputField = ({ user, thread }) => {
       .catch(error => {
         setError(error.message)
       });
-    
   };
 
   return (
@@ -51,6 +50,7 @@ const InputField = ({ user, thread }) => {
       <Button variant="contained" onClick={handleSendClick}>
         <SendIcon />
       </Button>
+      {error && <div>{error}</div>}
     </div>
   );
 };

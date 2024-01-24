@@ -25,7 +25,7 @@ const Home = () => {
       <h1>Home</h1>
       <div className="Messages">
         { messages && messages.map((message) => (
-          <SentMessage message={message} key={message.id} />
+          <SentMessage message={message} key={message._id} />
         )) }
       </div>
       <InputField user={"Developer"} thread="real-time" />

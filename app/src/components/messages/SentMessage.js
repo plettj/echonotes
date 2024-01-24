@@ -18,8 +18,8 @@ const SentMessage = ({ message }) => {
         marginBottom: 2,
       }}
     >
-      <Typography variant="h3">{message.user}</Typography>
-      <Typography variant="h6">{message.thread}</Typography>
+      <Typography variant="h6">{message.user}</Typography>
+      <Typography variant="h7">{message.thread}</Typography>
       <Typography variant="body1">{message.content}</Typography>
       <Typography variant="body1">{message.reactions}</Typography>
       <p>{message.createdAt}</p>

@@ -2,9 +2,10 @@ import SendButton from '../../components/buttons/SendButton';
 import { useEffect, useState } from 'react';
 import SentMessage from '../../components/messages/SentMessage';
 import InputField from '../../components/messages/InputField';
+import { useMessageContext } from '../../hooks/useMessageContext';
 
 const Home = () => {
-  const [messages, setMessages] = useState(null);
+  const { messages, dispatch } = useMessageContext();
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -12,7 +13,7 @@ const Home = () => {
       const json = await response.json();
 
       if (response.ok) {
-        setMessages(json);
+        dispatch({ type: 'SET_MESSAGES', payload: json });
       }
     }
 

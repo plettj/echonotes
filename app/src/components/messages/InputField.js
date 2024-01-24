@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import { useMessageContext } from '../../hooks/useMessageContext';
 
 const InputField = ({ user, thread }) => {
+  const { dispatch } = useMessageContext();
   const [message, setMessage] = useState('');
   const [error, setError] = useState(null);
 
@@ -30,10 +32,10 @@ const InputField = ({ user, thread }) => {
     })
       .then(response => response.json())
       .then(data => {
-        // Handle response from the API if needed
         setError(null);
         setMessage('');
         console.log("Message sent successfully!", data.content);
+        dispatch({ type: 'SEND_MESSAGE', payload: data })
       })
       .catch(error => {
         setError(error.message)

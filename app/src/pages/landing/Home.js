@@ -18,7 +18,7 @@ const Home = () => {
     }
 
     fetchMessages();
-  });
+  }, [dispatch]);
 
   return (
     <div className="Home">

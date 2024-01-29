@@ -15,3 +15,4 @@ I'm using Postman for my API request testing.
 `npm install dotenv`
 `npm install -g nodemon`
 `npm install mongoose`
+`cd ../app` -> `npm install date-fns`

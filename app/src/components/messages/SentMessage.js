@@ -1,4 +1,5 @@
 import * as React from 'react';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
@@ -42,7 +43,7 @@ const SentMessage = ({ message }) => {
       <Typography variant="h7">{message.thread}</Typography>
       <Typography variant="body1">{message.content}</Typography>
       <Typography variant="body1">{message.reactions}</Typography>
-      <p>{message.createdAt}</p>
+      <p>{formatDistanceToNow(new Date(message.createdAt), { addSuffix: true })}</p>
       <DeleteButton
         onClick={handleDeleteClick}
         style={{ position: 'absolute', top: 0, right: 0 }}
